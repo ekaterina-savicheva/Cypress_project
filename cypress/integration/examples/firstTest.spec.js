@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-//Comment
+//C
 
 it('Using Get and Find with Eq', () => {
     cy.visit('https://next.privat24.ua/deposit/open')
