@@ -1,15 +1,31 @@
 /// <reference types="Cypress" />
 
-//Comment
-
-it('Using Get and Find with Eq', () => {
-    cy.visit('https://next.privat24.ua/deposit/open')
-    cy.get('tbody').find('td').find('div').find('button').eq(0)
+it('SHOULD', () => {
+    cy.visit('https://next.privat24.ua/mobile?lang=en');
+    cy.get('[data-qa-node="amount"]')
+        .type(100)
+        .should('have.value', 100)
+        .and('be.visible');
 });
 
-it.only('Using Get and Find with Eq', () => {
-    cy.viewport(1800, 700)
-    cy.visit('https://docs.cypress.io/api/commands/eq')
-    cy.get('[class^="hidden"]').find('[href="#Syntax"]').click()
-    //cy.get('div').find('nav').find('ul').find('li').find('a')
+it('SHOULD', () => {
+    cy.visit('https://next.privat24.ua/mobile?lang=en');
+    cy.get('[data-qa-node="amount"]')
+        .type(100).then( input=> {
+            expect(input).to.have.value(100);
+        })
+});
+
+it('EXPECT', () => {
+    cy.visit('https://next.privat24.ua/deposit/open?lang=en');
+    cy.get('[data-qa-node="amount"]')
+        .type(100).then( input=> {
+            expect(input).to.have.value(100);
+        })
+});
+
+it.only('EXPECT', () => {
+    cy.visit('https://next.privat24.ua/deposit/open?lang=en');
+    cy.get('[data-qa-value="UAH"]')
+        .should('be.checked');
 });
