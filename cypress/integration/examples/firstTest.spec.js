@@ -27,11 +27,30 @@ it('EXPECT', () => {
         })
 });
 
-it.only('EXPECT', () => {
+it('Checked', () => {
     cy.visit('https://next.privat24.ua/deposit/open?lang=en');
     cy.get('[data-qa-value="UAH"]')
         .should('be.checked');
 });
 
-//comment
+it('Check is visible link', () => {
+    cy.visit('https://next.privat24.ua/deposit/open?lang=en');
+    cy.contains('Мої депозити')
+        .trigger('mouseover')
+        .get('#archiveDeposits')
+        .should('be.visible');
+});
+
+it('Check is correct attr', () => {
+    cy.visit('https://next.privat24.ua?lang=en');
+    cy.contains('Show cards')
+        .should('have.attr', 'type')
+        .and ('match', /button/);
+});
+
+it.only('Check is correct URL', () => {
+    cy.visit('https://next.privat24.ua?lang=en');
+    cy.url()
+        .should('eq', 'https://next.privat24.ua/?lang=en');
+});
 
