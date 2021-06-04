@@ -1,15 +1,63 @@
 /// <reference types="Cypress" />
 
-//Comment
+//type
 
-it('Using Get and Find with Eq', () => {
-    cy.visit('https://next.privat24.ua/deposit/open')
-    cy.get('tbody').find('td').find('div').find('button').eq(0)
-});
+it('type', () =>{
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+        .get('[data-qa-node="phone-number"]')
+        .type(123456789)        
+})
 
-it.only('Using Get and Find with Eq', () => {
-    cy.viewport(1800, 700)
-    cy.visit('https://docs.cypress.io/api/commands/eq')
-    cy.get('[class^="hidden"]').find('[href="#Syntax"]').click()
-    //cy.get('div').find('nav').find('ul').find('li').find('a')
-});
+it('focus', () =>{
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+        .get('[data-qa-node="amount"]')
+        .focus()        
+})
+
+it('clear', () =>{
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+        .get('[data-qa-node="amount"]')
+        .type(123456789)
+        .wait(2000)
+        .clear()        
+})
+
+it('submit', () =>{
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+        .get('form[method="post"]')
+        .submit()    
+})
+
+it('click', () =>{
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+        .get('[data-qa-value="manual"]')
+        .click()    
+})
+
+it('check', () =>{
+    cy.visit('https://www.facebook.com/reg/')
+        .get('input[value="2"]')
+        .check()      
+})
+
+it('select', () =>{
+    cy.visit('https://www.facebook.com/reg/')
+        .get('#day')
+        .select('17')
+        .get('#month')
+        .select('сен')    
+        .get('#year')
+        .select('1994')          
+})
+
+it('scroll', () =>{
+    cy.visit('https://next.privat24.ua/mobile?lang=en')
+        .get('[data-qa-node="lang"]')
+        .scrollIntoView()    
+})
+
+it.only('trigger', () =>{
+    cy.visit('https://next.privat24.ua/?lang=en')
+        .contains('Services')
+        .trigger('mouseover')    
+})
