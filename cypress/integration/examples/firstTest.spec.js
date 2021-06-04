@@ -1,15 +1,37 @@
 /// <reference types="Cypress" />
 
-//Comment
-
-it('Using Get and Find with Eq', () => {
-    cy.visit('https://next.privat24.ua/deposit/open')
-    cy.get('tbody').find('td').find('div').find('button').eq(0)
-});
-
-it.only('Using Get and Find with Eq', () => {
-    cy.viewport(1800, 700)
-    cy.visit('https://docs.cypress.io/api/commands/eq')
-    cy.get('[class^="hidden"]').find('[href="#Syntax"]').click()
-    //cy.get('div').find('nav').find('ul').find('li').find('a')
-});
+it('Replenishment of mobile phone number', () => {
+    cy.visit('https://next.privat24.ua/mobile/?lang=en')
+        .get('[data-qa-node="phone-number"]')
+        .type('686979712')
+        .get('[data-qa-node="amount"]')
+        .type('1')
+        .get('[data-qa-node="numberdebitSource"]')
+        .type('4552331448138217')
+        .get('[data-qa-node="expiredebitSource"]')
+        .type('0524')
+        .get('[data-qa-node="cvvdebitSource"]')
+        .type('111')
+        .get('[data-qa-node="submit"]')
+        .focus()
+        .wait(3000)
+        .get('[data-qa-node="firstNamedebitSource"]')
+        .type('taras')
+        .get('[data-qa-node="lastNamedebitSource"]')
+        .type('shevchenko')
+        .wait(3000)
+        .get('[data-qa-node="submit"]')
+        .click()
+        .get('[data-qa-node="card"]')
+        .should('have.text', '4552 **** **** 8217')
+        .get('[data-qa-node="amount"]')
+        .should('have.text', '1')
+        .get('[data-qa-node="currency"]')
+        .eq(0)
+        .should('contain.text', 'UAH')
+        .get('span[data-qa-node="commission"]')
+        .should('have.text', '2')
+        .get('[data-qa-node="currency"]')
+        .eq(1)
+        .should('contain.text', 'UAH')
+})
