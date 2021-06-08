@@ -1,21 +1,5 @@
 export class Transfers {
 
-    typeDebitCardData(cardNumber, expDate, cvv){
-        cy.get('[data-qa-node="numberdebitSource"]')
-            .type(cardNumber)
-            .get('[data-qa-node="expiredebitSource"]')
-            .type(expDate)
-            .get('[data-qa-node="cvvdebitSource"]')
-            .type(cvv)
-    }
-
-    typeDebitNameAndSurname(firstName, secondName){
-        cy.get('[data-qa-node="firstNamedebitSource"]')
-            .type(firstName)
-            .get('[data-qa-node="lastNamedebitSource"]')
-            .type(secondName)
-    }
-
     typeReceiverCard(receiverCard){
         cy.get('[data-qa-node="numberreceiver"]')
             .type(receiverCard)
@@ -26,11 +10,6 @@ export class Transfers {
             .type(firstName)
             .get('[data-qa-node="lastNamereceiver"]')
             .type(secondName)
-    }
-
-    typeAmount(amount){
-        cy.get('[data-qa-node="amount"]')
-            .type(amount)
     }
 
     typeComment(comment){

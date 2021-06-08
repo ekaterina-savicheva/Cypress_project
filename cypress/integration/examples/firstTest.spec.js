@@ -1,17 +1,17 @@
 /// <reference types="Cypress" />
 
+import { basePage } from "../../support/pages/basePage"
 import { mobileReplenishment } from "../../support/pages/mobileReplenishment"
 import { transfers } from "../../support/pages/transfers"
 
 it('Replenishment of mobile phone number', () => {
-
-    cy.visit('https://next.privat24.ua/mobile/?lang=en')
+    basePage.open('https://next.privat24.ua/mobile/?lang=en')
 
     mobileReplenishment.typePhoneNumber('686979712')
-    mobileReplenishment.typeAmount('1')
-    mobileReplenishment.typeDebitCardData('4552331448138217', '0524', '111')
+    basePage.typeAmount('1')
+    basePage.typeDebitCardData('4552331448138217', '0524', '111')
     cy.wait(3000)
-    mobileReplenishment.typeDebitName('taras', 'shevchenko')
+    basePage.typeDebitNameAndSurname('taras', 'shevchenko')
     cy.wait(3000)
     mobileReplenishment.submitPayment()
     
@@ -20,16 +20,16 @@ it('Replenishment of mobile phone number', () => {
     mobileReplenishment.checkDebitComission('2')
 })
 
-it.only("Money transfer between foreign cards", () => {
-    cy.visit('https://next.privat24.ua/money-transfer/card/?lang=en')
+it("Money transfer between foreign cards", () => {
+    basePage.open('https://next.privat24.ua/money-transfer/card/?lang=en')
         
-    transfers.typeDebitCardData('4552331448138217', '0524', '111')
+    basePage.typeDebitCardData('4552331448138217', '0524', '111')
     cy.wait(2000)
-    transfers.typeDebitNameAndSurname('taras', 'shevchenko')
+    basePage.typeDebitNameAndSurname('taras', 'shevchenko')
     transfers.typeReceiverCard('5309233034765085')
     cy.wait(2000)
     transfers.typeReceiverNameAndSurname('taras', 'shevchenko')
-    transfers.typeAmount('300')
+    basePage.typeAmount('300')
     transfers.typeComment('Cypress test')
     cy.wait(2000)
     transfers.submitTransfer()
